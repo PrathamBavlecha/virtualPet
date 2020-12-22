@@ -28,7 +28,13 @@ function setup() {
 
   addFood=createButton("Add Food");
   addFood.position(800,95);
-  addFood.mousePressed(addFoods);
+  addFood.mousePressed(()=>{
+      foodS++;
+      database.ref('/').update({
+        Food:foodS
+      })
+    
+  });
 
 }
 
@@ -41,7 +47,7 @@ function draw() {
     lastFed=data.val();
   });
  
-  fill(255,255,254);
+  fill(255,255  ,254);
   textSize(15);
   if(lastFed>=12){
     text("Last Feed : "+ lastFed%12 + " PM", 350,30);
@@ -73,9 +79,3 @@ function feedDog(){
 }
 
 //function to add food in stock
-function addFoods(){
-  foodS++;
-  database.ref('/').update({
-    Food:foodS
-  })
-}
