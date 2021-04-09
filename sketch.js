@@ -28,13 +28,7 @@ function setup() {
 
   addFood=createButton("Add Food");
   addFood.position(800,95);
-  addFood.mousePressed(()=>{
-      foodS++;
-      database.ref('/').update({
-        Food:foodS
-      })
-    
-  });
+  addFood.mousePressed(addFoods);
 
 }
 
@@ -79,3 +73,12 @@ function feedDog(){
 }
 
 //function to add food in stock
+function addFoods(){
+    foodS++;
+    foodObj.foodStock++
+    database.ref('/').update({
+      Food:foodS
+    })
+}
+
+
